@@ -31,7 +31,9 @@ git:
     depth: 1
 
 language: objective-c
-
+os: osx
+jdk: jdk8
+  
 before_script:
     - brew update
     - brew install adobe-air-sdk
@@ -44,6 +46,7 @@ before_script:
     - hdiutil attach ./CrossBridge_15.0.0.3.dmg -mountpoint ./mymount
     - rsync -l -r --exclude=.Trashes ./mymount/ ./crossbridge/
     - hdiutil detach /dev/disk1 -force
+    - unzip -o -q CrossBridge_15.0.0.3_java16_patch.zip -d ./crossbridge/
     - export _JAVA_OPTIONS="-Xms256m -Xmx2048m"
 
 script:
